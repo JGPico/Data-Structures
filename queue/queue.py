@@ -26,18 +26,12 @@ class Queue:
 
     def __len__(self):
         # return len(self.values)
-        current = self.values.head
 
-        if current == None:
-            return 0
-        else:
-            while current.get_next() is not self.values.tail:
-                current = current.get_next()
-
-        return current
+        return self.size
 
     def enqueue(self, value):
         # self.values.insert(0, value)
+        self.size += 1
         self.values.add_to_tail(value)
 
     def dequeue(self):
@@ -45,6 +39,7 @@ class Queue:
         #     return None
         # else:
         #     return self.values.pop()
+        self.size -= 1
         if self.values.head == None:
             return None
         else:

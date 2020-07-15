@@ -9,6 +9,8 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -18,19 +20,65 @@ class BSTNode:
     # Insert the given value into the tree
     def insert(self, value):
         pass
+        # Case 1 value is less than self.value
+        if value < self.value:
+            if self.left is None:
+                self.left = BSTNode(value)
+            else:
+                self.left.insert(value)
+
+        # Case 2 value is greater than or equal to self.value
+        elif value >= self.value:
+            if self.right is None:
+                self.right = BSTNode(value)
+            else:
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
+
     def contains(self, target):
-        pass
+        # Case 1: self.value is equal to the target
+        if self.value == target:
+            return True
+        # Case 2: if target is less than self.value
+        if target < self.value:
+            # if self.left is None, it isn't in the tree
+            if self.left is None:
+                return False
+            else:
+                return self.left.contains(target)
+        # Case 3: otherwise
+        else:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # fuhgedabout the left subtree
+        # iterate throught he nodes using a loop construct
+        current = self
+        while current.right != None:
+            if current.right is None:
+                return current.value
+            else:
+                current = current.right
+        return current.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
+        # recursive
         pass
+        # Go to the left, if not None - recure that value
+        # Go to the right, if not None - recure that value
+
+        # if self.left is not None:
+        #     self.left.for_each(self, fn)
+        # else:
+        #     fn(self.value)
+        # # if self.right
 
     # Part 2 -----------------------
 
